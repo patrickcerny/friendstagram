@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 //https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component
 const App = () => {
+  if (!authStore.user || !authStore.server) {
+    authStore.logOut();
+  }
+
   const classes = useStyles();
   if (window.innerWidth <= 600) {
     mobileStore.setMobile(true);
@@ -53,7 +57,7 @@ const App = () => {
     return (
       <Router>
         <NavBar></NavBar>
-        <main style={{ marginTop: "50px" }}>
+        <main>
           <Fab
             onClick={handleLogOut}
             size="medium"
@@ -99,7 +103,7 @@ const App = () => {
         <NavBar />
 
         {/*des muss unbeding no geändert werra*/}
-        <main style={{ marginTop: "50px" }}>
+        <main style={{ marginTop: "60px" }}>
           <Switch>
             <Route
               exact

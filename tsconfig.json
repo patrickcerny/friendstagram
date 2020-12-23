@@ -3,11 +3,7 @@
     "target": "es5",
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,11 +13,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "strictNullChecks": false,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

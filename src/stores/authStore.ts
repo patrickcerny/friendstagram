@@ -4,10 +4,9 @@ import { create, persist } from "mobx-persist";
 export class AuthStore {
   //persist => on reload gleich
   @persist("object") @observable user: any = undefined;
+  @persist("object") @observable server: any = undefined;
 
   @persist("object") @observable loggedIn: boolean = false;
-  @persist("object") @observable server: string = "";
-
   @action setUser: (user: any) => void = (user: any) => {
     this.user = user;
   };

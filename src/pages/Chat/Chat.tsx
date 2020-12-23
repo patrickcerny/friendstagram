@@ -33,13 +33,14 @@ import { mobileStore } from "../../stores/mobileStore";
 
 import ChatMessage from "../../components/ChatMessage/ChatMessage";
 import { inject, observer } from "mobx-react";
+import { join } from "path";
 const io = require("socket.io-client");
 
 var socket = io("http://localhost:3001");
 
 interface IMessage {
-  author: String;
-  text: String;
+  author: string;
+  text: string;
   date: Date;
 }
 
@@ -82,14 +83,16 @@ const useStyles = makeStyles((theme: Theme) =>
 let oldMessagesFound = false;
 const Chat = () => {
   const classes = useStyles();
-  const [messages, setMessages] = useState<Array<IMessage>>([]);
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const [input, setInput] = useState("");
   const messageWindow = useRef<HTMLDivElement>(document.createElement("div"));
 
   useEffect(() => {
     if (!oldMessagesFound) {
       axios
-        .get(String(process.env.REACT_APP_API_URL) + "/chat")
+        .post(String(process.env.REACT_APP_API_URL) + "/chat", {
+          server_name: authStore.server.server_name,
+        })
         .then((res) => {
           let oldMessages = res.data;
           setMessages(oldMessages);
@@ -98,11 +101,6 @@ const Chat = () => {
           console.log(err);
         });
     }
-    socket.on("message", (message: IMessage) => {
-      console.log();
-      const newMessages: Array<IMessage> = messages.push(message);
-      console.log(message);
-    });
     oldMessagesFound = true;
   });
 
@@ -113,8 +111,15 @@ const Chat = () => {
       server: "wg",
     });
     setInput("");
-    messageWindow.current.scrollTo({ top: messageWindow.current.clientHeight });
   };
+  socket.on("newMessage", (newMessage: IMessage) => {
+    let joined = messages.concat(newMessage);
+    setMessages(joined);
+    messageWindow.current.scrollTo({
+      top: messageWindow.current.scrollHeight + 40,
+      behavior: "smooth",
+    });
+  });
   return (
     <main className={classes.root}>
       <div className={classes.messageContainer} ref={messageWindow}>

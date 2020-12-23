@@ -80,8 +80,8 @@ const Home = () => {
         if (res.status !== 200) {
           console.log(Error!);
         } else {
-          authStore.server = name;
-          authStore.user = res.data;
+          authStore.server = res.data;
+          authStore.user = res.data.user[username];
           authStore.logIn();
         }
       })

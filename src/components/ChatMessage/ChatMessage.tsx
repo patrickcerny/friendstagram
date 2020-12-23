@@ -16,8 +16,8 @@ import { mobileStore } from "../../stores/mobileStore";
 import { authStore } from "../../stores/authStore";
 
 interface ChatMessageProps {
-  author: String;
-  text: String;
+  author: string;
+  text: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,12 +36,19 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "80%",
       borderBottom: "1px solid white",
       paddingBottom: "4px",
+      fontWeight: 600,
     },
   })
 );
 
 function ChatMessage(props: ChatMessageProps) {
   const classes = useStyles();
+
+  const getColorAuthor = () => {
+    const user = authStore.server.user[props.author];
+
+    return { color: user.color, borderBottomColor: user.color };
+  };
 
   return (
     <div
@@ -57,7 +64,7 @@ function ChatMessage(props: ChatMessageProps) {
         style={
           props.author === authStore.user.username
             ? { color: "white" }
-            : { color: "#2360c2", borderBottomColor: "black" }
+            : getColorAuthor()
         }
       >
         {props.author}
