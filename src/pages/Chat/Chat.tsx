@@ -15,6 +15,7 @@ var socket = io(process.env.REACT_APP_API_URL);
 interface IMessage {
   author: string;
   text: string;
+  server: string;
   date: Date;
 }
 
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     messageContainer: {
+      marginTop: "50px",
       overflowY: "scroll",
       flexGrow: 1,
     },
@@ -82,17 +84,19 @@ const Chat = () => {
     await socket.emit("message", {
       author: authStore.user.username,
       text: input,
-      server: "wg",
+      server: authStore.server.server_name,
     });
     setInput("");
   };
   socket.on("newMessage", (newMessage: IMessage) => {
-    let joined = messages.concat(newMessage);
-    setMessages(joined);
-    messageWindow.current.scrollTo({
-      top: messageWindow.current.scrollHeight + 40,
-      behavior: "smooth",
-    });
+    if (newMessage.server === authStore.server.server_name) {
+      let joined = messages.concat(newMessage);
+      setMessages(joined);
+      messageWindow.current.scrollTo({
+        top: messageWindow.current.scrollHeight + 40,
+        behavior: "smooth",
+      });
+    }
   });
   return (
     <main className={classes.root}>

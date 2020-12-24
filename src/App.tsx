@@ -29,7 +29,7 @@ const pages = {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     fab: {
-      position: "absolute",
+      position: "fixed",
       right: 30,
       top: 70,
     },
