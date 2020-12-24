@@ -4,11 +4,7 @@ import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider as StoreProvider } from "mobx-react";
-import {
-  ThemeProvider,
-  createMuiTheme,
-  responsiveFontSizes,
-} from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 // stores
 import { authStore } from "./stores/authStore";
 import { mobileStore } from "./stores/mobileStore";
