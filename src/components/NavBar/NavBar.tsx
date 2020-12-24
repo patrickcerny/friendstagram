@@ -1,5 +1,11 @@
 import React from "react";
-import { AppBar, Grid, IconButton, makeStyles } from "@material-ui/core";
+import {
+  AppBar,
+  Grid,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { HomeRounded, ChatRounded, AddRounded, Chat } from "@material-ui/icons";
 
@@ -10,6 +16,7 @@ import { inject, observer } from "mobx-react";
 const useStyles = makeStyles({
   root: {
     zIndex: 9999,
+    display: "flex",
   },
   navBarContainer: {
     display: "flex",
@@ -17,9 +24,14 @@ const useStyles = makeStyles({
   },
   links: {
     color: "white",
-  },
-  headerMobile: {
+    justifySelf: "center",
     textAlign: "center",
+    padding: "10px",
+  },
+  headerMobile: {},
+  logoContainer: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
@@ -29,22 +41,30 @@ function NavBar() {
   if (mobileStore.isMobile) {
     return (
       <AppBar position="fixed" color="primary" className={classes.root}>
-        <IconButton color="inherit">
-          <Link to="/">
-            <HomeRounded />
-          </Link>
-        </IconButton>
+        <Link to="/">
+          <Typography
+            variant="h4"
+            className={(classes.headerMobile, classes.links)}
+          >
+            Friendstagram
+          </Typography>
+        </Link>
       </AppBar>
     );
   } else {
     return (
       <AppBar position="fixed" color="primary" className={classes.root}>
         <Grid container>
-          <Grid item xs={6} sm={8} md={9} lg={10}>
+          <Grid
+            item
+            xs={6}
+            sm={8}
+            md={9}
+            lg={10}
+            className={classes.logoContainer}
+          >
             <Link to="/" className={classes.links}>
-              <IconButton color="inherit">
-                <ChatRounded />
-              </IconButton>
+              Friendstagram
             </Link>
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>

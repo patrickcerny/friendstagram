@@ -81,11 +81,12 @@ const Chat = () => {
   });
 
   const handleClickSumbit = async () => {
-    await socket.emit("message", {
-      author: authStore.user.username,
-      text: input,
-      server: authStore.server.server_name,
-    });
+    if (input.length !== 0)
+      await socket.emit("message", {
+        author: authStore.user.username,
+        text: input,
+        server: authStore.server.server_name,
+      });
     setInput("");
   };
   socket.on("newMessage", (newMessage: IMessage) => {

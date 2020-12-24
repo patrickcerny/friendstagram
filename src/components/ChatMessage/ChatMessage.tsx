@@ -38,6 +38,7 @@ function ChatMessage(props: ChatMessageProps) {
 
   const getColorAuthor = () => {
     const user = authStore.server.user[props.author];
+    console.log(authStore.server.user[props.author]);
 
     return { color: user.color, borderBottomColor: user.color };
   };
