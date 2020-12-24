@@ -12,14 +12,12 @@ import { createStyles, Fab, makeStyles, Theme } from "@material-ui/core";
 import { mobileStore } from "./stores/mobileStore";
 import NavBar from "./components/NavBar/NavBar";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import StickyFooter from "./components/StickyFooter/StickyFooter";
 
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Chat from "./pages/Chat/Chat";
 import Post from "./pages/Post/Post";
 import { inject, observer } from "mobx-react";
-import { relative } from "path";
 
 const pages = {
   home: Home,

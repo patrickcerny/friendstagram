@@ -1,19 +1,12 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Fab,
-} from "@material-ui/core";
 
 import { makeStyles, createStyles } from "@material-ui/styles";
 import { Theme } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 //stores
-import { mobileStore } from "../../stores/mobileStore";
+
 import { authStore } from "../../stores/authStore";
-import { autorun } from "mobx";
 
 interface PostProps {
   image: string;

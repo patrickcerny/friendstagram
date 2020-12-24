@@ -1,42 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import {
-  Button,
-  createStyles,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  makeStyles,
-  TextField,
-  Theme,
-  Typography,
-} from "@material-ui/core";
+import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
 import axios from "axios";
-import {
-  ClassSharp,
-  Info,
-  Lock,
-  SendOutlined,
-  Visibility,
-  VisibilityOff,
-} from "@material-ui/icons";
+import { SendOutlined } from "@material-ui/icons";
 
 import { authStore } from "../../stores/authStore";
 
-import { mobileStore } from "../../stores/mobileStore";
-
 import ChatMessage from "../../components/ChatMessage/ChatMessage";
 import { inject, observer } from "mobx-react";
-import { join } from "path";
 const io = require("socket.io-client");
 
-var socket = io("http://localhost:3001");
+var socket = io(process.env.REACT_APP_API_URL);
 
 interface IMessage {
   author: string;

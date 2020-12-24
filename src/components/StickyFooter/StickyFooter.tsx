@@ -1,21 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Fab,
-} from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 
 import { makeStyles, createStyles } from "@material-ui/styles";
 import { Theme } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import {
-  HomeRounded,
-  AddRounded,
-  ChatRounded,
-  AccountBoxRounded,
-  FlashOnRounded,
-} from "@material-ui/icons";
+import { HomeRounded, AddRounded, ChatRounded } from "@material-ui/icons";
 
 //stores
 import { mobileStore } from "../../stores/mobileStore";

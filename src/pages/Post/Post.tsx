@@ -1,35 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  Link,
-} from "react-router-dom";
+import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
 import {
   Button,
   createStyles,
   FormControl,
-  IconButton,
-  InputAdornment,
   makeStyles,
   TextField,
   Theme,
-  Typography,
 } from "@material-ui/core";
 import axios from "axios";
-import { Info, Lock, Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { authStore } from "../../stores/authStore";
 
-import { mobileStore } from "../../stores/mobileStore";
-import { error } from "console";
 import StickyFooter from "../../components/StickyFooter/StickyFooter";
-
-const fs = require("fs");
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

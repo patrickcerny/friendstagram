@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core";
 import axios from "axios";
 
-import { mobileStore } from "../../stores/mobileStore";
 import StickyFooter from "../../components/StickyFooter/StickyFooter";
 import { inject, observer } from "mobx-react";
 import { authStore } from "../../stores/authStore";
