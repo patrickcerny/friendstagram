@@ -11,7 +11,7 @@ import PostContainer from "../../components/Post/PostContainer";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "50px",
+      marginTop: "80px",
     },
     botnav: {
       left: 0,

@@ -20,8 +20,8 @@ interface PostProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "50vw",
-      maxWidth: "350px",
+      width: "100%",
+      maxWidth: "450px",
       minWidth: "50px",
       height: "auto",
       zIndex: 1,
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "90%",
       margin: "auto",
       borderBottom: "1px solid",
-      fontSize: "0.7em",
+      fontSize: "0.9em",
       padding: "10px",
     },
     author: {
@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "10px",
     },
     img: {
-      width: "100%",
+      width: "90%",
+      marginLeft: "5%",
     },
   })
 );

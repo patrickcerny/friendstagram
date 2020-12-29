@@ -51,7 +51,7 @@ const Chat = () => {
   const [fileWasUploaded, setFileWasUploaded] = useState<boolean>(false);
   const [title, setTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");
-  const [imageURL, setImageURL] = useState("");
+
   const [buttonEnabled, setButtonEnabled] = useState(true);
 
   const convertBase64 = (file: any) => {
@@ -74,17 +74,16 @@ const Chat = () => {
 
   const handleFileSelected = async (e: any) => {
     await setFile(e.target.files[0]);
-    await setFileWasUploaded(true);
-    await setImageURL(String(await convertBase64(file)));
-
-    if (title.length !== 0 && fileWasUploaded) {
+    console.log(file);
+    console.log(title.length);
+    if (title.length > 0) {
       setButtonEnabled(false);
     }
   };
 
   const handleClick = async () => {
     var encodedImage = String(await convertBase64(file));
-
+    setButtonEnabled(true);
     const body = {
       image: encodedImage,
       title: title,
@@ -138,7 +137,11 @@ const Chat = () => {
             Datei Hochladen
             <input type="file" hidden onChange={handleFileSelected} />
           </Button>
-          <img src={imageURL} alt="(Dein Foto)" className={classes.image} />
+          <img
+            src={URL.createObjectURL(file)}
+            alt="(Dein Foto)"
+            className={classes.image}
+          />
           <Button
             disabled={buttonEnabled}
             className={classes.input}

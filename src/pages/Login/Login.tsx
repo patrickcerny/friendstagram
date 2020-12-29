@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Home = () => {
+  const [alert, setAlert] = useState(<div></div>);
   const classes = useStyles();
 
   const [name, setName] = useState("");
@@ -69,9 +70,7 @@ const Home = () => {
     await axios
       .post(String(process.env.REACT_APP_API_URL) + "/login", logins)
       .then((res) => {
-        if (res.status !== 200) {
-          console.log(Error!);
-        } else {
+        if (res.status === 200) {
           authStore.server = res.data;
           authStore.user = res.data.user[username];
           authStore.logIn();
@@ -79,6 +78,7 @@ const Home = () => {
       })
       .catch((err) => {
         console.log(err);
+        setAlert(<div className={classes.input}>Falsche Anmeldedaten</div>);
       });
   };
 
@@ -157,6 +157,7 @@ const Home = () => {
           >
             Jetzt Einloggen!
           </Button>
+          {alert}
         </FormControl>
       </form>
     </main>

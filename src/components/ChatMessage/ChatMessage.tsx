@@ -15,8 +15,7 @@ interface ChatMessageProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "40%",
-      maxWidth: "40%",
+      width: "65%",
       padding: "10px",
       margin: "10px",
       borderRadius: "15px",
@@ -38,7 +37,6 @@ function ChatMessage(props: ChatMessageProps) {
 
   const getColorAuthor = () => {
     const user = authStore.server.user[props.author];
-    console.log(authStore.server.user[props.author]);
 
     return { color: user.color, borderBottomColor: user.color };
   };
