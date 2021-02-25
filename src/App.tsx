@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 
 import { authStore } from "./stores/authStore";
@@ -12,6 +12,7 @@ import { createStyles, Fab, makeStyles, Theme } from "@material-ui/core";
 import { mobileStore } from "./stores/mobileStore";
 import NavBar from "./components/NavBar/NavBar";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Cookies from "universal-cookie";
 
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -38,6 +39,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 //https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component
 const App = () => {
+  useEffect(() => {
+    const cookies = new Cookies();
+    cookies.set("reactfromblog", "this_works", {
+      path: "/",
+      sameSite: "none",
+      secure: true,
+    });
+  }, []);
+
   if (!authStore.user || !authStore.server) {
     authStore.logOut();
   }
@@ -50,6 +60,16 @@ const App = () => {
     authStore.logOut();
     authStore.user = null;
   };
+
+  useEffect(() => {
+    const cookistored = new Cookies();
+    console.log(
+      `This is the stored cookie: ${cookistored.get("reactfromblog")}`
+    );
+    alert(cookistored.get("reactfromblog"));
+    const cookies = new Cookies();
+    cookies.set("reactfromblog", "this_works", { path: "/" });
+  }, []);
 
   if (authStore.loggedIn) {
     return (
